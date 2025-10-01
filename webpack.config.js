@@ -1,7 +1,7 @@
 const webpack = require('webpack')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
-module.exports = { 
+module.exports = {
     entry: './src/index.jsx',
     output: {
         path: __dirname + '/public',
@@ -15,8 +15,8 @@ module.exports = {
         extensions: ['', '.js', '.jsx'],
         alias: {
             modules: __dirname + '/node_modules',
-            jquery: '/modules/admin-lte/plugins/jQuery/jquery-2.2.3.min.js',
-            bootstrap: '/modules/admin-lte/bootstrap/js/bootstrap.js',
+            jquery: __dirname + '/node_modules/admin-lte/plugins/jQuery/jquery-2.2.3.min.js',
+            bootstrap: __dirname + '/node_modules/admin-lte/bootstrap/js/bootstrap.js',
         }
     },
     plugins: [
@@ -32,15 +32,15 @@ module.exports = {
             test: /.js[x]?$/,
             loader: 'babel-loader',
             exclude: '/node_modules/',
-            query:{
+            query: {
                 presets: ['es2015', 'react'],
                 plugins: ['transform-object-rest-spread']
             }
-        },{
-            test:/\.css$/,
+        }, {
+            test: /\.css$/,
             loader: ExtractTextPlugin.extract('style-loader', 'css-loader')
-        },{
-            test:/\.woff|.woff2|.ttf|.eot|.svg|.png|.jpg*.*$/,
+        }, {
+            test: /\.woff|.woff2|.ttf|.eot|.svg|.png|.jpg*.*$/,
             loader: 'file'
         }]
     }
