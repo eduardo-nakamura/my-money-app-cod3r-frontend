@@ -40,7 +40,8 @@
   },
   "scripts": {
     "dev": "webpack-dev-server --progress --colors --inline --hot",
-    "production": "webpack --progress --p"
+    "production": "webpack --progress --p",
+    "back": "cd ../my-money-app-cod3r-backend && npm run production"
   },
   "keywords": [],
   "author": "",
