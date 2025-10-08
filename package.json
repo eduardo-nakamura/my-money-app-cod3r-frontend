@@ -41,7 +41,8 @@
   "scripts": {
     "dev": "webpack-dev-server --progress --colors --inline --hot",
     "production": "webpack --progress --p",
-    "back": "cd ../my-money-app-cod3r-backend && npm run production"
+    "backp": "cd ../my-money-app-cod3r-backend && npm run production",
+    "backd": "cd ../my-money-app-cod3r-backend && npm run dev"
   },
   "keywords": [],
   "author": "",
