@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { getList, showUpdate, showDelete } from './billingCycleAction'
+import CustomButton from '../common/form/CustomButton'
 export class billincCycleList extends Component {
 
     componentWillMount() {
@@ -16,12 +17,18 @@ export class billincCycleList extends Component {
                 <td>{e.month}</td>
                 <td>{e.year}</td>
                 <td>
-                    <button className="btn btn-warning" onClick={() => this.props.showUpdate(e)}>
+                    <CustomButton btnType='button' btnClass="warning" onClick={() => this.props.showUpdate(e)}>
+                        <i className="fa fa-pencil"></i>
+                    </CustomButton>
+                       <CustomButton btnType='button' btnClass="danger" onClick={() => this.props.showDelete(e)}>
+                        <i className="fa fa-trash-o"></i>
+                    </CustomButton>
+                    {/* <button className="btn btn-warning" onClick={() => this.props.showUpdate(e)}>
                         <i className="fa fa-pencil"></i>
                     </button>
                     <button className="btn btn-danger" onClick={() => this.props.showDelete(e)}>
                         <i className="fa fa-trash-o"></i>
-                    </button>
+                    </button> */}
                 </td>
             </tr>
         ))

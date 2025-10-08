@@ -1,12 +1,14 @@
 import React, { Component } from 'react'
-import { reduxForm, Field } from 'redux-form'
+import { reduxForm, Field, formValueSelector } from 'redux-form'
 import labelInput from '../common/form/labelInput'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { init } from './billingCycleAction'
+import ItemList from './itemList'
+import CustomButton from '../common/form/CustomButton'
 export class BillingCycleForm extends Component {
     render() {
-        const { handleSubmit, readOnly } = this.props
+        const { handleSubmit, readOnly, credits, debts } = this.props
         return (
             <form role="form" onSubmit={handleSubmit}>
                 <div className="box-body">
@@ -37,22 +39,36 @@ export class BillingCycleForm extends Component {
                         readOnly={readOnly}
                         component={labelInput}
                     />
+                    <ItemList cols='12 6' readOnly={readOnly} list={credits} field='credits' legend="Créditos" />
+                    <ItemList cols='12 6' showStatus={true} readOnly={readOnly} list={debts} field='debts' legend="Débitos" />
+                </div>
 
-                </div>
                 <div className="box-footer">
-                    <button type='submit' className={`btn btn-${this.props.submitClass}`}>
+                    <CustomButton btnType='submit' btnClass={`${this.props.submitClass}`}>
                         {this.props.submitLabel}
-                    </button>
-                    <button type="button" className="btn btn-default" onClick={this.props.init}>
+                    </CustomButton>
+                    <CustomButton btnType='button' btnClass="default" onClick={this.props.init}>
                         Cancelar
-                    </button>
+                    </CustomButton>
+
+                    {/* <button type='submit' className={`btn btn-${this.props.submitClass}`}>
+                        {this.props.submitLabel}
+                    </button> */}
+                    {/* <button type="button" className="btn btn-default" onClick={this.props.init}>
+                        Cancelar
+                    </button> */}
                 </div>
+
             </form>
         )
     }
 }
 
-BillingCycleForm = reduxForm({form: 'billingCycleForm',destroyOnUnmount: false})(BillingCycleForm)
-// const mapStateToProps = state => ({ tab: state.tab })
+BillingCycleForm = reduxForm({ form: 'billingCycleForm', destroyOnUnmount: false })(BillingCycleForm)
+const selector = formValueSelector('billingCycleForm')
+const mapStateToProps = state => ({
+    credits: selector(state, 'credits'),
+    debts: selector(state, 'debts')
+})
 const mapDispatchToProps = dispatch => bindActionCreators({ init }, dispatch)
-export default connect(null, mapDispatchToProps)(BillingCycleForm)
+export default connect(mapStateToProps, mapDispatchToProps)(BillingCycleForm)

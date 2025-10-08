@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const BASE_URL = 'http://localhost:3003/api'
-const INITIAL_VALUE = {}
+const INITIAL_VALUE = {credits: [{}], debts: [{}]}
 
 import { toastr } from 'react-redux-toastr'
 import { reset as resetForm, initialize as initializeForm } from 'redux-form'
