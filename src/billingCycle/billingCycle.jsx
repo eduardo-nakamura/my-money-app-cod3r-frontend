@@ -14,7 +14,7 @@ import List from './billincCycleList'
 import Form from './billingCycleForm'
 
 import { selectTab, showTabs } from '../common/tab/tabAction'
-import { create } from './billingCycleAction'
+import { create, update, remove } from './billingCycleAction'
 class billingCycle extends Component {
   componentWillMount() {
     this.props.selectTab('tabList')
@@ -27,10 +27,10 @@ class billingCycle extends Component {
         <Content>
           <Tabs>
             <TabsHeader>
-              <TabHeader label='Listar' icon='bars' target='tabList' />
-              <TabHeader label='Incluir' icon='plus' target='tabCreate' />
-              <TabHeader label='Alterar' icon='pencil' target='tabUpdate' />
-              <TabHeader label='Excluir' icon='trash-o' target='tabDelete' />
+              <TabHeader label=' Listar' icon='bars' target='tabList' />
+              <TabHeader label=' Incluir' icon='plus' target='tabCreate' />
+              <TabHeader label=' Alterar' icon='pencil' target='tabUpdate' />
+              <TabHeader label=' Excluir' icon='trash-o' target='tabDelete' />
             </TabsHeader>
             <TabsContent>
               <TabContent id="tabList">
@@ -40,10 +40,10 @@ class billingCycle extends Component {
                 <Form onSubmit={this.props.create} />
               </TabContent>
               <TabContent id="tabUpdate">
-                <h2>Update</h2>
+                <Form onSubmit={this.props.update} />
               </TabContent>
               <TabContent id="tabDelete">
-                <h2>Delete</h2>
+                  <Form onSubmit={this.props.remove} readOnly={true} />
               </TabContent>
             </TabsContent>
           </Tabs>
@@ -54,5 +54,5 @@ class billingCycle extends Component {
 }
 
 // const mapStateToProps = state => ({tab: state.tab})
-const mapDispatchToProps = dispatch => bindActionCreators({ selectTab, showTabs, create }, dispatch)
+const mapDispatchToProps = dispatch => bindActionCreators({ selectTab, showTabs, create, update, remove }, dispatch)
 export default connect(null, mapDispatchToProps)(billingCycle)
