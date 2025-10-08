@@ -5,10 +5,12 @@ import App from './app'
 import Dashboard from '../dashboard/dashboard'
 import Dashboard2 from '../dashboard2/dashboard2'
 import BillingCycle from '../billingCycle/billingCycle'
+import AuthOrApp from './authOrApp'
 
 export default props => (
   <Router history={hashHistory}>
-    <Route path='/' component={App} >
+    <Route path='/' component={AuthOrApp} >
+    
       <IndexRoute component={Dashboard} />
       <Route path='dashboardNoRedux' component={Dashboard2} />
       <Route path='billingCycles' component={BillingCycle} />
